@@ -9,13 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-          image: mysql:5.7
-          env:
-              MYSQL_ALLOW_EMPTY_PASSWORD: yes
-              MYSQL_DATABASE: casdoor
-          ports:
-              - 3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: casdoor
+          MYSQL_USER: root
+          MYSQL_PASSWORD: 123456
+          MYSQL_ROOT_PASSWORD: 123456
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
